@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mobi.seus.jena</groupId>
+  <artifactId>jena-android-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>2.12.1</version>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>2.3</version>
+          <configuration>
+            <relocations>
+              <!-- repackage javax.xml because it's a core java namespace 
+                but not included in android -->
+              <relocation>
+                <pattern>javax.xml</pattern>
+                <shadedPattern>mobi.seus.javax.xml</shadedPattern>
+              </relocation>
+              <!-- repackage apache http because the ancient version included 
+                in android conflicts with the version required by jena -->
+              <relocation>
+                <pattern>org.apache.http</pattern>
+                <shadedPattern>mobi.seus.org.apache.http</shadedPattern>
+              </relocation>
+            </relocations>
+            <artifactSet>
+              <includes>
+                <include>xml-apis:xml-apis</include>
+                <include>xerces:xercesImpl</include>
+                <include>org.apache.httpcomponents:*</include>
+                <include>org.apache.jena:*</include>
+              </includes>
+            </artifactSet>
+            <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
