@@ -12,8 +12,8 @@
     <ver.jena>2.12.1</ver.jena>
     <ver.iri>1.1.1</ver.iri>
     <ver.tdb>1.1.1</ver.tdb>
-    <ver.spatial>1.1.1</ver.spatial>
     <ver.text>1.1.1</ver.text>
+    <ver.spatial>1.1.1</ver.spatial>
   </properties>
 
   <build>
