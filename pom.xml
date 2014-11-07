@@ -4,11 +4,12 @@
   <groupId>mobi.seus.jena</groupId>
   <artifactId>jena-android-parent</artifactId>
   <packaging>pom</packaging>
-  <version>2.12.1</version>
+  <version>${ver.jena}</version>
 
   <properties>
     <jdk.version>1.7</jdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <ver.jena>2.12.1</ver.jena>
   </properties>
 
   <build>

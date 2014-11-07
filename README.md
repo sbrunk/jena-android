@@ -18,11 +18,13 @@ The solution is to relocate all elements from conflicting namespaces to a differ
 Create modified Jena packages:
 
 ```bash
-$ cd jena-android-parent
+$ cd jena-android
 $ mvn install
 ```
 
-This will install modified Jena packages that run on Android into your local maven repository. Right now, it creates packages for the jena-core and jena-arq modules. All dependencies that rely on things from javax.xml (e.g. jena-iri and the xerces xml library) are shaded into those jars and the dependencies to the original libraries are removed. All other dependencies are **not** included but are kept as dependency in the modified pom file.
+This will install modified Jena packages that run on Android into your local maven repository. At the moment it creates packages for the jena-core, jena-arq, jena-iri and jena-tdb modules. All dependencies that rely on things from conflicting namespaces are shaded into a single jar for each module, and the dependencies to the original libraries are removed.
+All other dependencies are **not** included but are kept as dependency in the modified pom file.
+E.g. the jar of jena-android-core contains jena-iri, xerces and xml-apis as they use or define things in javax.xml but not slf4j, which is kept as a dependency.
 
 Now, in your Android project, add a dependency to the library. E.g. if you use gradle add the following to your build.gradle:
 
@@ -34,7 +36,7 @@ repositories {
 
 dependencies {
     ...
-    compile 'mobi.seus.jena:jena-arq-android:2.12.1'
+    compile 'mobi.seus.jena:jena-android-arq:2.12.1'
 }
 ```
 
