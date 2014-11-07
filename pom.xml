@@ -6,9 +6,16 @@
   <packaging>pom</packaging>
   <version>2.12.1</version>
 
+  <properties>
+    <jdk.version>1.7</jdk.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <build>
     <pluginManagement>
       <plugins>
+        <!-- This is the relocation configuration that is applied to everything 
+          that uses classes from javax.xml -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
@@ -50,5 +57,13 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <modules>
+    <module>jena-android-iri</module>
+    <module>jena-android-core</module>
+
+    <module>jena-android-arq</module>
+    <module>jena-android-tdb</module>
+  </modules>
 
 </project>
