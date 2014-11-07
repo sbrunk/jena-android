@@ -2,26 +2,43 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jena-android-iri</artifactId>
+  <version>1.1.1</version>
 
   <parent>
     <groupId>mobi.seus.jena</groupId>
     <artifactId>jena-android-parent</artifactId>
-    <version>${ver.jena}</version>
+    <version>1.0</version>
   </parent>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.jena</groupId>
       <artifactId>jena-iri</artifactId>
-      <version>1.1.1</version>
-      <type>jar</type>
+      <version>${ver.iri}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.11.0</version>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <!-- This is the relocation configuration that is applied to everything 
+        that uses classes from javax.xml -->
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
+        <configuration>
+          <artifactSet>
+            <includes>
+              <include>xml-apis:xml-apis</include>
+              <include>xerces:xercesImpl</include>
+              <include>org.apache.jena:jena-iri</include>
+            </includes>
+          </artifactSet>
+        </configuration>
       </plugin>
     </plugins>
   </build>

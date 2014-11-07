@@ -4,12 +4,14 @@
   <groupId>mobi.seus.jena</groupId>
   <artifactId>jena-android-parent</artifactId>
   <packaging>pom</packaging>
-  <version>${ver.jena}</version>
+  <version>1.0</version>
 
   <properties>
     <jdk.version>1.7</jdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <ver.jena>2.12.1</ver.jena>
+    <ver.iri>1.1.1</ver.iri>
+    <ver.tdb>1.1.1</ver.tdb>
   </properties>
 
   <build>
@@ -36,14 +38,6 @@
                 <shadedPattern>mobi.seus.org.apache.http</shadedPattern>
               </relocation>
             </relocations>
-            <artifactSet>
-              <includes>
-                <include>xml-apis:xml-apis</include>
-                <include>xerces:xercesImpl</include>
-                <include>org.apache.httpcomponents:*</include>
-                <include>org.apache.jena:*</include>
-              </includes>
-            </artifactSet>
             <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
           </configuration>
           <executions>
@@ -62,7 +56,6 @@
   <modules>
     <module>jena-android-iri</module>
     <module>jena-android-core</module>
-
     <module>jena-android-arq</module>
     <module>jena-android-tdb</module>
   </modules>

@@ -2,26 +2,57 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jena-android-tdb</artifactId>
+  <version>1.1.1</version>
 
   <parent>
     <groupId>mobi.seus.jena</groupId>
     <artifactId>jena-android-parent</artifactId>
-    <version>${ver.jena}</version>
+    <version>1.0</version>
   </parent>
 
   <dependencies>
+
     <dependency>
       <groupId>org.apache.jena</groupId>
       <artifactId>jena-tdb</artifactId>
-      <version>1.1.1</version>
-      <type>jar</type>
+      <version>${ver.tdb}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>jena-core</artifactId>
+          <groupId>org.apache.jena</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jena-arq</artifactId>
+          <groupId>org.apache.jena</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <dependency>
+      <groupId>mobi.seus.jena</groupId>
+      <artifactId>jena-android-arq</artifactId>
+      <version>${ver.jena}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>mobi.seus.jena</groupId>
+      <artifactId>jena-android-core</artifactId>
+      <version>${ver.jena}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
+        <configuration>
+          <artifactSet>
+            <includes>
+              <include>org.apache.jena:jena-tdb</include>
+            </includes>
+          </artifactSet>
+        </configuration>
       </plugin>
     </plugins>
   </build>

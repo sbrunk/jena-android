@@ -2,26 +2,52 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jena-android-core</artifactId>
+  <version>${ver.jena}</version>
 
   <parent>
     <groupId>mobi.seus.jena</groupId>
     <artifactId>jena-android-parent</artifactId>
-    <version>${ver.jena}</version>
+    <version>1.0</version>
   </parent>
 
   <dependencies>
+  
     <dependency>
       <groupId>org.apache.jena</groupId>
       <artifactId>jena-core</artifactId>
       <version>${ver.jena}</version>
       <type>jar</type>
+      <exclusions>
+        <exclusion>
+          <artifactId>jena-iri</artifactId>
+          <groupId>org.apache.jena</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xercesImpl</artifactId>
+          <groupId>xerces</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <dependency>
+      <groupId>mobi.seus.jena</groupId>
+      <artifactId>jena-android-iri</artifactId>
+      <version>${ver.iri}</version>
+    </dependency>
+    
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
+        <configuration>
+          <artifactSet>
+            <includes>
+              <include>org.apache.jena:jena-core</include>
+            </includes>
+          </artifactSet>
+        </configuration>
       </plugin>
     </plugins>
   </build>
