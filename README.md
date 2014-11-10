@@ -35,6 +35,8 @@ This will install modified Jena packages that run on Android into your local Mav
  * jena-spatial
  * jena-text
 
+The modified modules are called jena-android-core, jena-android-arq etc.
+
 ### Managed Dependencies
 If you use a build tool with dependency management such as Gradle, Maven or SBT, you can now just add a dependency to one of the libraries in your Android project.
 E.g. if you use gradle add the following to your build.gradle:
@@ -48,6 +50,15 @@ repositories {
 dependencies {
     ...
     compile 'mobi.seus.jena:jena-android-arq:2.12.1'
+}
+
+// we have to exclude a few files here that appear in multiple libraries
+packagingOptions {
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/LICENSE.txt'
+    exclude 'META-INF/NOTICE.txt'
 }
 ```
 
@@ -65,7 +76,7 @@ If you don't use a tool for dependency management need unmanaged dependencies, y
  
 E.g. for jena-android-arq you need to copy jena-android-arq/target/jena-android-arq-2.12.1.jar and the content from jena-android-arq/target/dependencies to your Android Project. Some of the modules like jena-android-text don't create their own jar. In that case it's enough to can just copy the dependencies.
 
-## Work around the Dalvik 64K Method Limit
+### How to deal with the Dalvik 64K Method Limit
 
 Jena and its dependencies reference a lot of methods, so you will probably reach the 64K method limit for Android's dex files quite soon. 
 You will get an error message like the following during compilation:

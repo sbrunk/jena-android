@@ -77,9 +77,27 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="httpcomponents-android-4.2.6" level="project" />
+    <orderEntry type="library" exported="" name="jena-android-core-2.12.1" level="project" />
+    <orderEntry type="library" exported="" name="jackson-core-2.3.3" level="project" />
+    <orderEntry type="library" exported="" name="jcl-over-slf4j-1.7.7" level="project" />
+    <orderEntry type="library" exported="" name="commons-codec-1.6" level="project" />
+    <orderEntry type="library" exported="" name="jena-android-arq-2.12.1" level="project" />
+    <orderEntry type="library" exported="" name="jackson-annotations-2.3.0" level="project" />
+    <orderEntry type="library" exported="" name="jsonld-java-0.5.0" level="project" />
+    <orderEntry type="library" exported="" name="commons-csv-1.0" level="project" />
+    <orderEntry type="library" exported="" name="slf4j-log4j12-1.7.6" level="project" />
+    <orderEntry type="library" exported="" name="log4j-1.2.17" level="project" />
+    <orderEntry type="library" exported="" name="libthrift-0.9.1" level="project" />
+    <orderEntry type="library" exported="" name="slf4j-api-1.7.7" level="project" />
+    <orderEntry type="library" exported="" name="xerces-android-2.11.0" level="project" />
+    <orderEntry type="library" exported="" name="jena-android-iri-1.1.1" level="project" />
+    <orderEntry type="library" exported="" name="jackson-databind-2.3.3" level="project" />
+    <orderEntry type="library" exported="" name="commons-lang3-3.1" level="project" />
   </component>
 </module>
 
