@@ -74,7 +74,7 @@ If you don't use a tool for dependency management need unmanaged dependencies, y
  For each module this will create a file module-name.jar in the target directory as well as all transitive dependencies in the target/dependencies directory of the module.
  2. Copy the module jar and the dependency jar into the libs folder of your Android project.
  
-E.g. for jena-android-arq you need to copy jena-android-arq/target/jena-android-arq-2.12.1.jar and the content from jena-android-arq/target/dependencies to your Android Project. Some of the modules like jena-android-text don't create their own jar. In that case it's enough to can just copy the dependencies.
+E.g. for jena-android-arq you need to copy jena-android-arq/target/jena-android-arq-2.12.1.jar and the content from jena-android-arq/target/dependencies to your Android Project. Some of the modules like jena-android-text don't create their own jar. In that case it's enough to just copy the dependencies.
 
 ### How to deal with the Dalvik 64K Method Limit
 
