@@ -11,7 +11,7 @@
   </parent>
 
   <dependencies>
-  
+
     <dependency>
       <groupId>org.apache.jena</groupId>
       <artifactId>jena-core</artifactId>
@@ -34,7 +34,7 @@
       <artifactId>jena-android-iri</artifactId>
       <version>${ver.iri}</version>
     </dependency>
-    
+
   </dependencies>
 
   <build>
@@ -49,6 +49,14 @@
           </artifactSet>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <excludeArtifactIds>jena-core</excludeArtifactIds>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 

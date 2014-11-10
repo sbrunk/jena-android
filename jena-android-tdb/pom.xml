@@ -34,12 +34,6 @@
       <version>${ver.jena}</version>
     </dependency>
 
-    <dependency>
-      <groupId>mobi.seus.jena</groupId>
-      <artifactId>jena-android-core</artifactId>
-      <version>${ver.jena}</version>
-    </dependency>
-
   </dependencies>
 
   <build>
@@ -54,6 +48,14 @@
           </artifactSet>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <excludeArtifactIds>jena-tdb</excludeArtifactIds>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 

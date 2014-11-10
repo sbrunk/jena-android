@@ -22,6 +22,10 @@
           <artifactId>apache-jena-libs</artifactId>
           <groupId>org.apache.jena</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
 
@@ -32,5 +36,13 @@
     </dependency>
 
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

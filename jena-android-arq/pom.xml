@@ -21,6 +21,14 @@
           <artifactId>jena-core</artifactId>
           <groupId>org.apache.jena</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>httpclient-cache</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
 
@@ -30,6 +38,11 @@
       <version>${ver.jena}</version>
     </dependency>
 
+    <dependency>
+      <groupId>mobi.seus.jena</groupId>
+      <artifactId>httpcomponents-android</artifactId>
+      <version>4.2.6</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -40,11 +53,18 @@
           <artifactSet>
             <includes>
               <include>org.apache.jena:jena-arq</include>
-              <include>org.apache.httpcomponents:*</include>
             </includes>
           </artifactSet>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <excludeArtifactIds>jena-arq</excludeArtifactIds>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 

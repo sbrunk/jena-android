@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+	<artifactId>httpcomponents-android</artifactId>
+  <version>4.2.6</version>
+
+  <parent>
+    <groupId>mobi.seus.jena</groupId>
+    <artifactId>jena-android-parent</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <dependencies>
+
+  <dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.2.6</version>
+    <exclusions>
+      <!-- commons logging is already in the android sdk -->
+      <exclusion>
+        <artifactId>commons-logging</artifactId>
+        <groupId>commons-logging</groupId>
+      </exclusion>
+    </exclusions>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient-cache</artifactId>
+    <version>4.2.6</version>
+    <exclusions>
+      <exclusion>
+        <artifactId>commons-logging</artifactId>
+        <groupId>commons-logging</groupId>
+      </exclusion>
+    </exclusions>
+  </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <configuration>
+          <artifactSet>
+            <includes>
+              <include>org.apache.httpcomponents:*</include>
+            </includes>
+          </artifactSet>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <excludeGroupIds>org.apache.httpcomponents</excludeGroupIds>
+        </configuration>
+      </plugin>
+      
+    </plugins>
+  </build>
+
+</project>

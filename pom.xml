@@ -20,21 +20,21 @@
     <pluginManagement>
       <plugins>
         <!-- This is the relocation configuration that is applied to everything 
-          that uses classes from conflicting namespaces -->
+          that uses classes from conflicting namespaces. -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
           <version>2.3</version>
           <configuration>
             <relocations>
-              <!-- repackage javax.xml because it's a core java namespace 
-                but not included in android -->
+              <!-- Repackage javax.xml because it's a core java namespace 
+                but not included in android. -->
               <relocation>
                 <pattern>javax.xml</pattern>
                 <shadedPattern>mobi.seus.javax.xml</shadedPattern>
               </relocation>
-              <!-- repackage apache http because the ancient version included 
-                in android conflicts with the version required by jena -->
+              <!-- Repackage apache http because the ancient version included 
+                in android conflicts with the version required by Jena. -->
               <relocation>
                 <pattern>org.apache.http</pattern>
                 <shadedPattern>mobi.seus.org.apache.http</shadedPattern>
@@ -47,6 +47,22 @@
               <phase>package</phase>
               <goals>
                 <goal>shade</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Use the dependency plugin to copy dependencies for each module into target/dependencies. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.9</version>
+          <executions>
+            <execution>
+              <id>copy-dependencies</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-dependencies</goal>
               </goals>
             </execution>
           </executions>
@@ -82,6 +98,9 @@
   </build>
 
   <modules>
+    <module>xerces-android</module>
+    <module>httpcomponents-android</module>
+    
     <module>jena-android-iri</module>
     <module>jena-android-core</module>
     <module>jena-android-arq</module>
@@ -89,6 +108,8 @@
     
     <module>jena-android-text</module>
     <module>jena-android-spatial</module>
+    
+    <module>jena-android-jars</module>
   </modules>
 
 </project>

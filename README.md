@@ -13,6 +13,10 @@ A similar issue is caused by a version conflict in the Apache [httpclient](https
 
 The solution is to relocate all elements from conflicting namespaces to a different package and change all code referencing those elements accordingly. Fortunately, there are tools for doing that automatically. We use the [Maven Shade](https://Maven.apache.org/plugins/Maven-shade-plugin/) plugin for that, specifically the [relocation feature](https://Maven.apache.org/plugins/Maven-shade-plugin/examples/class-relocation.html).
 
+External dependencies that rely on things from conflicting namespaces are shaded into modified jars (xerces and httpclient at the moment). The modules that depend on them are rewritten so they depend on the modified version while the dependencies on the original libraries are removed.
+Internal dependencies of the Jena modules are overwritten as well, so jena-android-arq (containing the shaded jena-arq) depends on jena-android-core instead of jena-core directly.
+All other dependencies are **not** included but are kept as dependency in the modified pom file.
+
 ## Usage
 
 Create modified Jena packages:
@@ -22,7 +26,7 @@ $ cd jena-android
 $ mvn install
 ```
 
-This will install modified Jena packages that run on Android into your local Maven repository. At the moment it creates packages for the following modules:
+This will install modified Jena packages that run on Android into your local Maven repository. At the moment it creates packages for the following Jena modules:
 
  * jena-core
  * jena-arq
@@ -31,12 +35,9 @@ This will install modified Jena packages that run on Android into your local Mav
  * jena-spatial
  * jena-text
 
-External dependencies that rely on things from conflicting namespaces are shaded into a single jar in the module that depends on them, and the dependencies on the original libraries are removed.
-All other dependencies are **not** included but are kept as dependency in the modified pom file.
-E.g. the jar of jena-android-iri contains xerces and xml-apis as they use or define things in javax.xml, but not slf4j, which is kept as a dependency.
-The internal dependencies of the Jena modules are overwritten, so jena-android-arq contains jena-arq but depends on jena-android-core instead of jena-core directly.
-
-Now, in your Android project, add a dependency to the library. E.g. if you use gradle add the following to your build.gradle:
+### Managed Dependencies
+If you use a build tool with dependency management such as Gradle, Maven or SBT, you can now just add a dependency to one of the libraries in your Android project.
+E.g. if you use gradle add the following to your build.gradle:
 
 ```groovy
 repositories {
@@ -50,20 +51,29 @@ dependencies {
 }
 ```
 
-If you want to use it in a team you should deploy it to your Maven repository or add the jars as unmanaged dependencies.
+If your want to pull in all Jena libraries you can also add a dependency on jena-android-jars.
 
-If you need unmanaged dependencies you can also copy all jars including their dependencies into one directory the following way:
+If you want to use it in a team you should deploy it to your Maven repository or you could add the jars as unmanaged dependencies.
+
+### Unmanaged Dependencies
+
+If you don't use a tool for dependency management need unmanaged dependencies, you could also
 
  1. Install the modified libraries into your local Maven repository as explained above.
- 2.
-```bash
-$ cd jena-android-jars
-$ mvn dependency:copy-dependencies
-```
+ For each module this will create a file module-name.jar in the target directory as well as all transitive dependencies in the target/dependencies directory of the module.
+ 2. Copy the module jar and the dependency jar into the libs folder of your Android project.
+ 
+E.g. for jena-android-arq you need to copy jena-android-arq/target/jena-android-arq-2.12.1.jar and the content from jena-android-arq/target/dependencies to your Android Project. Some of the modules like jena-android-text don't create their own jar. In that case it's enough to can just copy the dependencies.
 
-This will copy all modified Jena jars as well as their transitive dependencies into the target/dependencies directory.
+## Work around the Dalvik 64K Method Limit
 
-Jena and its dependencies reference a lot of methods, so you will reach the 64k method limit for Android's dex files quite soon. To work around this limitation, you either have to:
+Jena and its dependencies reference a lot of methods, so you will probably reach the 64K method limit for Android's dex files quite soon. 
+You will get an error message like the following during compilation:
+
+> Unable to execute dex: method ID not in [0, 0xffff]: 65536
+> Conversion to Dalvik format failed: Unable to execute dex: method ID not in [0, 0xffff]: 65536
+
+To work around this limitation, you either have to:
 
   1. Run Proguard on every build (even on development builds).
   2. Use the new multi dex class loader that is available since Android 5.0. See https://github.com/casidiablo/multidex for details.
