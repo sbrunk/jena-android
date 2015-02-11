@@ -1,6 +1,6 @@
 # Jena for Android
 
-This project aims to make the [Apache Jena](http://jena.apache.org/) Framework usable on Android. While Jena is written in pure Java, it can't be used as is due to some package conflict issues.
+This project aims to make the [Apache Jena](http://jena.apache.org/) Framework usable on Android. While Jena is written in pure Java, it can't be used on Android as is due to some package conflict issues.
 
 ## Background
 The main issue is that Jena contains code that refers to classes from the javax.xml namespace that aren't part of the Dalvik Virtual machine. The classes are actually provided by [xerces](https://xerces.apache.org/) but the dalvik compiler refuses to build anything in core java namespaces as it could, in theory, be added to future Android versions causing conflicts. You could use the `--core-library` option of the dex tool, but according to the dex documentation:
@@ -62,19 +62,23 @@ packagingOptions {
 }
 ```
 
-If your want to pull in all Jena libraries you can also add a dependency on jena-android-jars.
+If your want to pull in all Jena libraries you should add a dependency on jena-android-jars.
 
-If you want to use it in a team you should deploy it to your Maven repository or you could add the jars as unmanaged dependencies.
+Currently the artifacts are not deployed to a public repository. If you want to use them in a team you should deploy them to your own Maven repository or add the jars as unmanaged dependencies.
 
 ### Unmanaged Dependencies
 
-If you don't use a tool for dependency management need unmanaged dependencies, you could also
+If you don't use a tool for dependency management, you can also create jars including their dependencies with the following command:
 
- 1. Install the modified libraries into your local Maven repository as explained above.
- For each module this will create a file module-name.jar in the target directory as well as all transitive dependencies in the target/dependencies directory of the module.
- 2. Copy the module jar and the dependency jar into the libs folder of your Android project.
+```bash
+$ cd jena-android
+$ mvn package dependency:copy-dependencies
+```
+For each module this will create a file called `target/module-name.jar` and copy all transitive dependencies into the `target/dependencies/` directory of that module.
+
+Now copy the module jar and the dependency jar into the libs folder of your Android project.
  
-E.g. for jena-android-arq you need to copy jena-android-arq/target/jena-android-arq-2.12.1.jar and the content from jena-android-arq/target/dependencies to your Android Project. Some of the modules like jena-android-text don't create their own jar. In that case it's enough to just copy the dependencies.
+E.g. for jena-android-arq you have to copy `jena-android-arq/target/jena-android-arq-2.12.1.jar` and the content from `jena-android-arq/target/dependencies/` to your Android Project. Some of the modules like jena-android-text don't create their own jar. In that case it's enough to just copy the dependencies.
 
 ### How to deal with the Dalvik 64K Method Limit
 
@@ -87,4 +91,4 @@ You will get an error message like the following during compilation:
 To work around this limitation, you either have to:
 
   1. Run Proguard on every build (even on development builds).
-  2. Use the new multi dex class loader that is available since Android 5.0. See https://github.com/casidiablo/multidex for details.
+  2. Use the new multi dex class loader that is available since Android 5.0. See https://developer.android.com/tools/building/multidex.html for details.
