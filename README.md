@@ -1,6 +1,9 @@
-# Jena for Android
+# Apache Jena for Android
 
-This project aims to make the [Apache Jena](http://jena.apache.org/) Framework usable on Android. While Jena is written in pure Java, it can't be used on Android as is due to some package conflict issues.
+This project aims to make the [Apache Jena](http://jena.apache.org/) Framework usable on Android. While Jena is written in pure Java, it can't be used on Android as is, due to multiple package conflict issues. To overcome these issues, we have created an Android Port enabling developers to use Apache Jena in Android apps. In contrast to other ports we don't just publish binaries, but make the Maven build files of the port available. We also stay as close as possible to the original (i.e. no source code changes).
+This should make it easier to stay in sync with upcoming Jena releases.
+
+The Android Port was created at the [Junior Professorship in Software Engineering of Ubiquitous Systems (SEUS)](http://seus.inf.tu-dresden.de/) at the Faculty of Computer Science at the TU Dresden.
 
 ## Background
 The main issue is that Jena contains code that refers to classes from the javax.xml namespace that aren't part of the Dalvik Virtual machine. The classes are actually provided by [xerces](https://xerces.apache.org/) but the dalvik compiler refuses to build anything in core java namespaces as it could, in theory, be added to future Android versions causing conflicts. You could use the `--core-library` option of the dex tool, but according to the dex documentation:
