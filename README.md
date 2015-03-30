@@ -52,7 +52,7 @@ repositories {
 
 dependencies {
     ...
-    compile 'mobi.seus.jena:jena-android-arq:2.12.1'
+    compile 'mobi.seus.jena:jena-android-arq:2.13.0'
 }
 
 // we have to exclude a few files here that appear in multiple libraries

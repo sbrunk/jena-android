@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jena-android-tdb</artifactId>
-  <version>${ver.tdb}</version>
+  <version>1.1.2</version>
 
   <parent>
     <groupId>mobi.seus.jena</groupId>
     <artifactId>jena-android-parent</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
   </parent>
 
   <dependencies>
@@ -46,6 +46,17 @@
               <include>org.apache.jena:jena-tdb</include>
             </includes>
           </artifactSet>
+              <filters>
+                <filter>
+                  <artifact>org.apache.jena:jena-tdb</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                  <excludes>
+                    <exclude>com/hp/hpl/jena/tdb/sys/ProcessUtils*</exclude>
+                  </excludes>
+                </filter>
+              </filters>
         </configuration>
       </plugin>
 

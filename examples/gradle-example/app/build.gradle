@@ -32,7 +32,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'org.slf4j:slf4j-android:1.7.10'
-    compile ('mobi.seus.jena:jena-android-arq:2.12.1') {
+    compile ('mobi.seus.jena:jena-android-arq:2.13.0') {
         exclude module: 'slf4j-log4j12'
     }
 }

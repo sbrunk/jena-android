@@ -5,12 +5,12 @@ Dependency project that just copies the jars of all Jena modules for convenience
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jena-android-jars</artifactId>
-  <version>${ver.jena}</version>
+  <version>2.13.0</version>
 
   <parent>
     <groupId>mobi.seus.jena</groupId>
     <artifactId>jena-android-parent</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
   </parent>
 
   <dependencies>
