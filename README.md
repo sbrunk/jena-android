@@ -34,7 +34,7 @@ This will install modified Jena packages that run on Android into your local Mav
  * jena-core
  * jena-arq
  * jena-iri
- * jena-tdb
+ * ~~jena-tdb~~ (TDB is broken at the moment because it depends on JDK classes that aren't available on Android).
  * jena-spatial
  * jena-text
 
