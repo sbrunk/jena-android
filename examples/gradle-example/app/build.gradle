@@ -1,19 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "mobi.seus.jena.example"
-        minSdkVersion 15
-        targetSdkVersion 21
+        minSdkVersion 19
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,5 +31,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'mobi.seus.jena:jena-android-arq:2.12.1'
+    compile 'org.slf4j:slf4j-android:1.7.10'
+    compile ('mobi.seus.jena:jena-android-arq:2.12.1') {
+        exclude module: 'slf4j-log4j12'
+    }
 }
