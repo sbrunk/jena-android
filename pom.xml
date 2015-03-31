@@ -41,11 +41,15 @@
           <version>2.3</version>
           <configuration>
             <relocations>
-              <!-- Repackage javax.xml because it's a core java namespace 
+              <!-- Repackage StAX because it's a core java namespace 
                 but not included in android. -->
               <relocation>
-                <pattern>javax.xml</pattern>
-                <shadedPattern>mobi.seus.javax.xml</shadedPattern>
+                <pattern>javax.xml.stream</pattern>
+                <shadedPattern>mobi.seus.javax.xml.stream</shadedPattern>
+              </relocation>
+              <relocation>
+                <pattern>javax.xml.transform.stax</pattern>
+                <shadedPattern>mobi.seus.javax.xml.transform.stax</shadedPattern>
               </relocation>
               <!-- Repackage apache http because the ancient version included 
                 in android conflicts with the version required by Jena. -->

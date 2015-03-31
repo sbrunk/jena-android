@@ -16,18 +16,6 @@
       <artifactId>jena-iri</artifactId>
       <version>${ver.iri}</version>
     </dependency>
-
-    <!--
-    Depend on the xerces-android that shades xerces and xml-apis but with everything
-    from javax.xml relocated.
-    The dependency is moved from jena-core to jena-iri because iri uses stuff
-    from javax.xml
-    -->
-    <dependency>
-      <groupId>mobi.seus.jena</groupId>
-      <artifactId>xerces-android</artifactId>
-      <version>2.11.0</version>
-    </dependency>
   </dependencies>
 
   <build>

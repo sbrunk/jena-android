@@ -30,6 +30,26 @@
             </includes>
           </artifactSet>
         </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <filters>
+                <filter>
+                <!-- include StAX because it is missing on Android -->
+                  <artifact>xml-apis:xml-apis</artifact>
+                  <includes>
+                    <include>javax/xml/stream/**</include>
+                    <include>javax/xml/stream/transform/stax/**</include>
+                  </includes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
