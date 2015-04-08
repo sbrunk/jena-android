@@ -53,6 +53,8 @@
           <artifactSet>
             <includes>
               <include>org.apache.jena:jena-arq</include>
+              <!-- jsonld-java uses httpclient so we have to shade it to apply the relocations to it -->
+              <include>com.github.jsonld-java:jsonld-java</include>
             </includes>
           </artifactSet>
         </configuration>

@@ -1,6 +1,6 @@
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
-# in /home/brunksn/software/android-sdk-linux/tools/proguard/proguard-android.txt
+# in $ANDROID_HOME/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
 # directive in build.gradle.
 #
@@ -15,3 +15,25 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontobfuscate
+-dontoptimize
+
+-dontwarn com.github.jsonldjava.utils.**
+-dontwarn com.hp.hpl.jena.sparql.mgt.ContextMBean
+-dontwarn org.apache.html.dom.**
+-dontwarn org.apache.log4j.**
+-dontwarn org.apache.thrift.server.**
+-dontwarn org.apache.xerces.**
+-dontwarn com.fasterxml.jackson.databind.ext.**
+-dontwarn com.github.jsonldjava.core.**
+-dontwarn com.hp.hpl.jena.rdf.model.AnonId
+-dontwarn com.hp.hpl.jena.sparql.mgt.ARQMgt_X
+-dontwarn mobi.seus.org.apache.http.impl.auth.**
+-dontwarn mobi.seus.org.apache.http.impl.client.cache.**
+-dontwarn org.apache.thrift.transport.**
+-dontwarn org.apache.xml.serialize.**
+-dontwarn org.w3c.dom.html.HTMLDOMImplementation
+
+# TDB
+-dontwarn com.hp.hpl.jena.tdb.sys.ProcessUtils

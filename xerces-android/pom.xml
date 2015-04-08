@@ -43,7 +43,8 @@
                   <artifact>xml-apis:xml-apis</artifact>
                   <includes>
                     <include>javax/xml/stream/**</include>
-                    <include>javax/xml/stream/transform/stax/**</include>
+                    <include>javax/xml/transform/stax/**</include>
+                    <include>org/w3c/dom/ElementTraversal.class</include>
                   </includes>
                 </filter>
               </filters>
