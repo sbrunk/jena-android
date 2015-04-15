@@ -34,6 +34,13 @@
       <version>${ver.jena}</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android</artifactId>
+      <version>4.1.1.4</version>
+      <scope>provided</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -46,6 +53,17 @@
               <include>org.apache.jena:jena-tdb</include>
             </includes>
           </artifactSet>
+          <filters>
+            <filter>
+              <artifact>org.apache.jena:jena-tdb</artifact>
+              <includes>
+                <include>**</include>
+              </includes>
+              <excludes>
+                <exclude>com/hp/hpl/jena/tdb/sys/ProcessUtils*</exclude>
+              </excludes>
+            </filter>
+          </filters>
         </configuration>
       </plugin>
 
