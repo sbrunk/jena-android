@@ -34,7 +34,7 @@ This will install modified Jena packages that run on Android into your local Mav
  * jena-core
  * jena-arq
  * jena-iri
- * ~~jena-tdb~~ (TDB is broken at the moment because it depends on JDK classes that aren't available on Android).
+ * jena-tdb
  * jena-spatial
  * jena-text
 
@@ -95,3 +95,5 @@ To work around this limitation, you either have to:
 
   1. Run Proguard on every build (even on development builds).
   2. Use the new multi dex class loader that is available since Android 5.0. See https://developer.android.com/tools/building/multidex.html for details.
+  
+Have a look at the example project to see how it can be done.
