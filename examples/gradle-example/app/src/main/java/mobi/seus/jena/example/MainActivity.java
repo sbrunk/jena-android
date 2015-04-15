@@ -1,43 +1,20 @@
 package mobi.seus.jena.example;
 
 import android.app.Activity;
-import android.app.ListActivity;
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
 
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.Model;
 
-import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.riot.RDFFormat;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import mobi.seus.jena.example.R;
-
-public class MainActivity extends ListActivity {
-    String[] classList = new String[]{};
-    ArrayAdapter<String> adapter;
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1);
-        setListAdapter(adapter);
-        new RequestTask().execute();
+        setContentView(R.layout.activity_main);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,33 +38,11 @@ public class MainActivity extends ListActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class RequestTask extends AsyncTask<Void, Void, ResultSet> {
+    public void loadDbpedia(View view) {
+        startActivity(new Intent(this, ResultListActivity.class));
+    }
 
-        @Override
-        protected ResultSet doInBackground(Void... params) {
-            String queryString = "" +
-                    "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
-                    "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-                    "SELECT DISTINCT * WHERE {\n" +
-                    "?s a owl:Class.\n" +
-                    "?s rdfs:label ?label\n" +
-                    "FILTER ( lang(?label) = \"en\" )\n" +
-                    "} ORDER BY ?label LIMIT 1000\n";
-            Query query = QueryFactory.create(queryString);
-            QueryExecution qexec = QueryExecutionFactory.createServiceRequest("http://dbpedia.org/sparql", query);
-            ResultSet results = qexec.execSelect();
-            return results;
-        }
-
-        @Override
-        protected void onPostExecute(ResultSet resultSet) {
-            List<String> resultList = new ArrayList<String>();
-            while (resultSet.hasNext()) {
-                QuerySolution solution = resultSet.nextSolution();
-                String label = solution.getLiteral("label").getString();
-                adapter.add(label);
-            }
-
-        }
+    public void readWriteRdf(View view) {
+        startActivity(new Intent(this, RDFReadWriteActivity.class));
     }
 }

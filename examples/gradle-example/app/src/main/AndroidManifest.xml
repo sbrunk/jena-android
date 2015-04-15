@@ -10,13 +10,21 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="mobi.seus.jena.example.MainActivity"
+            android:name=".ResultListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".RDFReadWriteActivity"
+            android:label="@string/title_activity_rdfread_write" >
         </activity>
     </application>
 

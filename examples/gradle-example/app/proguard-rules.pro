@@ -37,3 +37,14 @@
 
 # TDB
 -dontwarn com.hp.hpl.jena.tdb.sys.ProcessUtils
+
+# keep classes that are used but only instantiated reflectively
+-keep public class org.apache.xerces.impl.dv.dtd.DTDDVFactoryImpl
+
+# logback
+-keep class ch.qos.** { *; }
+-keep class org.slf4j.** { *; }
+-keepattributes *Annotation*
+-dontwarn ch.qos.logback.core.net.*
+
+#-ignorewarnings
